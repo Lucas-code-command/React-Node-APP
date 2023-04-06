@@ -24,10 +24,8 @@ app.post('/users',(req,res)=>{
 })
 
 app.get('/users', (req,res)=>{
-    res.send(users)
+    res.send(users) 
 })
-
-
 
 
 app.listen(port,()=>{
