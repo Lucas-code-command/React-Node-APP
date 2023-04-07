@@ -9,6 +9,7 @@ function App() {
     <nav class="navbar">
       <ul>
         <li><Link to='/forms'>Forms</Link></li>
+        <li><Link to='/retrive'>Vizualize Data</Link></li>
         <li><Link to='/country'>country api</Link></li>
       </ul>
     </nav>

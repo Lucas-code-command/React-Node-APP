@@ -37,15 +37,13 @@ app.post('/users',(req,res)=>{
 
 
 
-app.get('/', (req,res)=> {
-    res.send('hey, i am working')
+app.get('/users', (req,res)=> {
+    users.find({})
+        .then(users=>{
+            res.send(users)
+        })
 })
 
-
-
-app.get('/users', (req,res)=>{
-    res.send(users) 
-})
 
 
 app.listen(port,()=>{
