@@ -3,7 +3,7 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 
 // ideia é criar um lugar de busca onde as pessoas possam ver o país onde querem morar
-// 1 passo é criar cards
+// 2 passo é criar botão e a maquina entender qual pais que é para abrir
 
 export default function GetApi(){
     const link = 'https://restcountries.com/v3.1/all'
