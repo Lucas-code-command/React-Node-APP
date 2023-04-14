@@ -10,6 +10,8 @@ import {createBrowserRouter,createRoutesFromElements,Link,Outlet,Route, RouterPr
 
 
 
+
+
 function App() {
 
   const router  = createBrowserRouter(
@@ -17,7 +19,8 @@ function App() {
       <Route path='/' element={<Root />} >
         <Route index element={<Home />}/>
         <Route path='/forms' element={<Forms />}/>
-        <Route path='/get' element={<GetApi />}/>
+        <Route path='/get' element={<GetApi />} />
+         
         <Route path='/retrive' element={<Retrive />}/>
 
         <Route path='/parameters'>
@@ -42,7 +45,7 @@ const Root = () => {
     <div className='row'>
       <div><Link to='/'> Home </Link></div>
       <div><Link to='/forms'> Forms </Link></div>
-      <div><Link to='/get'> getAPI </Link></div>
+      <div><Link to='/get'> Country </Link></div>
       <div><Link to='/retrive'> Retrive </Link></div>
       <div><Link to='/parameters'> Parameters </Link></div>
     </div>

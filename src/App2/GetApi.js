@@ -1,9 +1,11 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import axios from 'axios'
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 // ideia é criar um lugar de busca onde as pessoas possam ver o país onde querem morar
-// 2 passo é criar botão e a maquina entender qual pais que é para abrir
+// 2 passo é criar botão e conectar com a wikipédia
+// 3 passo em uma nova página a pessoa abre uma lista de prós e contras
+// 4 passo trazer as informações do pais da wikipédia e fazer do lado a lista de prós e contras
 
 export default function GetApi(){
     const link = 'https://restcountries.com/v3.1/all'
@@ -33,6 +35,7 @@ export default function GetApi(){
     },[])
 
 
+
     const handleFilterChange = (e) => {
         setFilterQuery(e.target.value)
         
@@ -55,9 +58,14 @@ export default function GetApi(){
     ) 
     :[];
 
+    //wiki
+    function sendToWiki(countryName) {
+        const formattedCountryName = countryName.replace(/ /g, '_'); // replace spaces with underscores
+        window.location.href = `https://en.wikipedia.org/wiki/${formattedCountryName}`;
+    }
     
-    console.log(data)
-
+    
+   
     return(
         <div>   
         <div class="text-center p-2 mb-3" style={{backgroundColor:"black", color:'white'}}>
@@ -119,15 +127,28 @@ export default function GetApi(){
                                     <li className='list-group-item'><strong>Area:</strong> {item.area}</li>
                                     <li className='list-group-item'><strong>Continent:</strong> {item.continents && item.continents.map((continent)=>(<>{continent}</>))}</li>
                                     <li className="list-group-item"><strong>Borders:</strong>
-                                        {item.borders && item.borders.map((border, index)=>(
-                                                <span key={`${border}-${index}`}> {border}, </span>
-                                             ))}
-                                     </li>
-                                     <li className='list-group-item'><strong>Language: </strong>
-                                        {item.languages && Object.entries(item.languages).map(([key,value])=>(
-                                            <>{value}, </>))}
-                                     </li>
+                                        {item.borders && item.borders.map((border, index) => (
+                                            <span key={`${border}-${index}`}> {border}{index === item.borders.length - 1 ? '.' : ','} </span>
+                                        ))}
+                                    </li>
+
+                                    <li className='list-group-item'>
+                                        <strong>Language: </strong>
+                                        {item.languages && Object.entries(item.languages).map(([key, value], index) => (
+                                            <span key={key}>
+                                                {value}{index === item.languages.length - 1 ? '.' : ', '}
+                                            </span>
+                                            ))}
+
+                                    </li>
+
                                   </ul>
+                                  <div>
+                                  <button 
+                                  className='btn btn-outline-primary '
+                                  onClick={() => sendToWiki(item.name.common)}
+                                  >Know More?</button>
+                                  </div>
                             </div>
                         </div> 
                     ))}
