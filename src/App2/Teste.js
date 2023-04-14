@@ -1,6 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
 
 function Forms(){
@@ -44,7 +44,7 @@ function Forms(){
     // send data or prevent deafult
     const [valid, setValid] = useState(false)
     const [nameValid, setNameValid] =useState(false)
-    const history = useHistory()
+    const history = useNavigate()
     const handleSubmit = (e) => {
         if (valid === false || nameValid === false){e.preventDefault();}
         else if(valid === true && nameValid === true) {

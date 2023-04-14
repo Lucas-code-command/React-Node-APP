@@ -1,4 +1,4 @@
-import { Link, Router } from "react-router-dom/cjs/react-router-dom.min";
+import { Link, Router } from "react-router-dom";
 
 
 
@@ -6,11 +6,6 @@ export default function Home(){
     return(
     <div>
     <div class="container">
-    <nav class="navbar">
-      <Router>
-        <Link to='/country'>Country</Link>
-      </Router>
-    </nav>
         {/* Row */}
         <div class="row row-cols-1 gy-2 row-cols-md-3">
           <div class="col"> <div class="box" style={{backgroundColor:"black"}}>col1</div> </div>
