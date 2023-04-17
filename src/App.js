@@ -42,12 +42,12 @@ function App() {
 const Root = () => {
   return(
     <div className='container'>
-    <div className='row'>
-      <div><Link to='/'> Home </Link></div>
-      <div><Link to='/forms'> Forms </Link></div>
-      <div><Link to='/get'> Country </Link></div>
-      <div><Link to='/retrive'> Retrive </Link></div>
-      <div><Link to='/parameters'> Parameters </Link></div>
+    <div className='row pb-2'>
+      <div className='col'><Link to='/'> Home </Link></div>
+      <div className='col'><Link to='/forms'> Forms </Link></div>
+      <div className='col'><Link to='/get'> Country </Link></div>
+      <div className='col'><Link to='/retrive'> Retrive </Link></div>
+      <div className='col'><Link to='/parameters'> Parameters </Link></div>
     </div>
     <div>
       <Outlet />

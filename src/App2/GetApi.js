@@ -67,14 +67,14 @@ export default function GetApi(){
     
    
     return(
-        <div>   
-        <div class="text-center p-2 mb-3" style={{backgroundColor:"black", color:'white'}}>
+        <div style={{display: 'flex'}}>   
+        <div class="text-center p-2 mb-5" 
+        style={{width: '100vw',position:'absolute', left:'0', backgroundColor:'black', color:'white'}}>
             <h1>List Of the countries</h1>    
         </div>        
            
-            <div class='container'> 
-            {
-            //master
+            <div class='container mt-5' > 
+            {//master
             }
             
                 <div class='row pb-3 g-2'>
