@@ -6,6 +6,7 @@ import Parameters from './Params_history/Parameters';
 import ParameterOne from './Params_history/ParameterOne';
 import Home from './Home/Home';
 import {createBrowserRouter,createRoutesFromElements,Link,Outlet,Route, RouterProvider } from 'react-router-dom'
+import GetApiEach from './App2/GetApiEach';
 
 
 
@@ -19,7 +20,11 @@ function App() {
       <Route path='/' element={<Root />} >
         <Route index element={<Home />}/>
         <Route path='/forms' element={<Forms />}/>
-        <Route path='/get' element={<GetApi />} />
+
+        <Route path='/get' >
+          <Route index element={<GetApi />} />
+          <Route path=':country' element={<GetApiEach />}/>
+        </Route>
          
         <Route path='/retrive' element={<Retrive />}/>
 

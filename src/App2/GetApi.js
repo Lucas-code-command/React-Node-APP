@@ -1,9 +1,9 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 
 // ideia é criar um lugar de busca onde as pessoas possam ver o país onde querem morar
-// 2 passo é criar botão e conectar com a wikipédia
 // 3 passo em uma nova página a pessoa abre uma lista de prós e contras
 // 4 passo trazer as informações do pais da wikipédia e fazer do lado a lista de prós e contras
 
@@ -143,12 +143,19 @@ export default function GetApi(){
                                     </li>
 
                                   </ul>
-                                  <div>
+                                  <div className='pb-2 text-center'>
                                   <button 
-                                  className='btn btn-outline-primary '
+                                  className='btn btn-outline-primary'
                                   onClick={() => sendToWiki(item.name.common)}
-                                  >Know More?</button>
+                                  >Wikipedia</button>
                                   </div>
+                                 <div className='pb-2 text-center'>
+                                    <button className='btn btn-outline-primary'>
+                                        <Link to={`/get/${item.name.common}`}>
+                                        Click here to know more about: <br /> {item.name.common}
+                                        </Link>
+                                    </button>
+                                 </div>
                             </div>
                         </div> 
                     ))}
