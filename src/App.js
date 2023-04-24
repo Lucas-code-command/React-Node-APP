@@ -7,6 +7,9 @@ import ParameterOne from './Params_history/ParameterOne';
 import Home from './Home/Home';
 import {createBrowserRouter,createRoutesFromElements,Link,Outlet,Route, RouterProvider } from 'react-router-dom'
 import GetApiEach from './App2/GetApiEach';
+import SignUp from './Firebase/SignUp';
+import { AuthProvider } from './Firebase/AuthContext';
+import React, { Fragment } from 'react';
 
 
 
@@ -14,29 +17,33 @@ import GetApiEach from './App2/GetApiEach';
 
 
 function App() {
-
-  const router  = createBrowserRouter(
+  const router = createBrowserRouter(
     createRoutesFromElements(
-      <Route path='/' element={<Root />} >
-        <Route index element={<Home />}/>
-        <Route path='/forms' element={<Forms />}/>
+      <React.Fragment>
+        <Route path="/" element={<Root />} >
+          <Route index element={<Home />} />
+          <Route path="/forms" element={<Forms />} />
 
-        <Route path='/get' >
-          <Route index element={<GetApi />} />
-          <Route path=':country' element={<GetApiEach />}/>
+          <Route path="/get">
+            <Route index element={<GetApi />} />
+            <Route path=":country" element={<GetApiEach />} />
+          </Route>
+
+          <Route path="/retrive" element={<Retrive />} />
+
+          <Route path="/parameters">
+            <Route index element={<Parameters />} />
+            <Route path=":paramId" element={<ParameterOne />} />
+          </Route>
+
+          <Route path="/auth">
+              <Route index element={<AuthProvider><SignUp /></AuthProvider>} />
+          </Route>
         </Route>
-         
-        <Route path='/retrive' element={<Retrive />}/>
-
-        <Route path='/parameters'>
-          <Route index element={<Parameters />}/>
-          <Route path=':paramId' element={<ParameterOne />}/>
-        </Route>
-       
-      </Route>
-
+      </React.Fragment>
     )
-  )
+  );
+
   return (
     <div>
       <RouterProvider router={router}/>
@@ -53,6 +60,7 @@ const Root = () => {
       <div className='col'><Link to='/get'> Country </Link></div>
       <div className='col'><Link to='/retrive'> Retrive </Link></div>
       <div className='col'><Link to='/parameters'> Parameters </Link></div>
+      <div className='col'><Link to='/auth'>Auth Firebase</Link></div>
     </div>
     <div>
       <Outlet />
