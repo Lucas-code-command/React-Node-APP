@@ -8,8 +8,7 @@ import Home from './Home/Home';
 import {createBrowserRouter,createRoutesFromElements,Link,Outlet,Route, RouterProvider } from 'react-router-dom'
 import GetApiEach from './App2/GetApiEach';
 import SignUp from './Firebase/SignUp';
-import { AuthProvider } from './Firebase/AuthContext';
-import React, { Fragment } from 'react';
+import React from 'react';
 
 
 
@@ -37,7 +36,7 @@ function App() {
           </Route>
 
           <Route path="/auth">
-              <Route index element={<AuthProvider><SignUp /></AuthProvider>} />
+              <Route index element={<SignUp />} />
           </Route>
         </Route>
       </React.Fragment>

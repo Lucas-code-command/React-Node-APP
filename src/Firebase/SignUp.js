@@ -1,34 +1,25 @@
-import {React, useRef, useState} from 'react'
+import {React,useState} from 'react'
 import {Card, Form, Button, Alert} from 'react-bootstrap'
-import { useAuth } from './AuthContext'
+//parei em 9:31 desse video https://www.youtube.com/watch?v=Vv_Oi7zPPTw
 
 
 export default function SignUp(){
-    const emailRef = useRef()
-    const passwordRef = useRef()
-    const passwordConfirmRef = useRef()
-    const {signUp, currentUser} = useAuth()
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [passwordConfirm, setpasswordConfirm] = useState('')
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
 
     async function handleSubmit(e){
         e.preventDefault()
+        
 
-        if(passwordRef.current.value !== passwordConfirmRef.current.value){
+        if(password !== passwordConfirm){
             return setError("Passwords do not match")
         }
 
-         try{
-            setError('')
-            setLoading(true)
-            await signUp(emailRef.current.value, passwordRef.current.value)
-        }catch(error){
-            setError(error.message)
-        } finally{
-            setLoading(false)
-        }
+        console.log(email, password)
 
-        
     }
 
     return(
@@ -37,19 +28,21 @@ export default function SignUp(){
                 <Card.Body>
                     <h2>Sign In</h2>
                     {error && <Alert variant='danger'>{error}</Alert>}
-                    {JSON.stringify(currentUser)}
                     <Form onSubmit={handleSubmit}>
                         <Form.Group className='pb-2' id='email'>
                             <Form.Label>Email</Form.Label>
-                            <Form.Control type='email' required ref={emailRef}/>
+                            <Form.Control type='email' required value={email}
+                            onChange={(e)=>setEmail(e.target.value)} />
                         </Form.Group>
                         <Form.Group  className='pb-2' id='password'>
                             <Form.Label>Password</Form.Label>
-                            <Form.Control type='password' required ref={passwordRef}/>
+                            <Form.Control type='password' required value={password}
+                            onChange={(e)=>{setPassword(e.target.value)}}></Form.Control>
                         </Form.Group>
                         <Form.Group className='pb-3'id='password-confirm'>
                             <Form.Label>Password Confirmation</Form.Label>
-                            <Form.Control type='password' required ref={passwordConfirmRef}/>
+                            <Form.Control type='password' required value={passwordConfirm}
+                            onChange={(e)=>{setpasswordConfirm(e.target.value)}}/>
                         </Form.Group>
                         <Button disabled ={loading} className="btn btn-primary w-100" type='submit'>Sign Up</Button>
                     </Form>
