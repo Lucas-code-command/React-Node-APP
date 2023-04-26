@@ -9,6 +9,7 @@ import {createBrowserRouter,createRoutesFromElements,Link,Outlet,Route, RouterPr
 import GetApiEach from './App2/GetApiEach';
 import SignUp from './Firebase/SignUp';
 import React from 'react';
+import User_page from './Firebase/Auth_firebase/User_page';
 
 
 
@@ -37,6 +38,7 @@ function App() {
 
           <Route path="/auth">
               <Route index element={<SignUp />} />
+              <Route path=":UserId" element={<User_page />} />
           </Route>
         </Route>
       </React.Fragment>

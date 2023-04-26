@@ -1,6 +1,11 @@
 import {React,useState} from 'react'
 import {Card, Form, Button, Alert} from 'react-bootstrap'
-//parei em 9:31 desse video https://www.youtube.com/watch?v=Vv_Oi7zPPTw
+import { createUserWithEmailAndPassword } from 'firebase/auth'
+import { auth } from './Auth_firebase/firebase'
+import { useNavigate } from 'react-router-dom'
+
+
+
 
 
 export default function SignUp(){
@@ -9,18 +14,28 @@ export default function SignUp(){
     const [passwordConfirm, setpasswordConfirm] = useState('')
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
-
+    const navigate = useNavigate()
+    
+    
     async function handleSubmit(e){
         e.preventDefault()
-        
 
         if(password !== passwordConfirm){
             return setError("Passwords do not match")
         }
 
-        console.log(email, password)
+        console.log(auth?.currentUser?.email)
+        
+        try{
+            await createUserWithEmailAndPassword(auth, email, password)
+            navigate('/auth/10')
+        } catch(err){
+            console.error(err)
+        }
 
+        
     }
+
 
     return(
         <>
@@ -44,7 +59,9 @@ export default function SignUp(){
                             <Form.Control type='password' required value={passwordConfirm}
                             onChange={(e)=>{setpasswordConfirm(e.target.value)}}/>
                         </Form.Group>
-                        <Button disabled ={loading} className="btn btn-primary w-100" type='submit'>Sign Up</Button>
+                        <Button disabled ={loading} className="btn btn-primary w-100" type='submit'>
+                            Sign Up
+                        </Button>
                     </Form>
                 </Card.Body>
             </Card>
