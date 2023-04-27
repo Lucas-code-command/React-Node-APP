@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 // ideia é criar um lugar de busca onde as pessoas possam ver o país onde querem morar
-// dar link nos paises que gostaria e store no mongodb servidor dentro do perfil da pessoa, usar integração mongo e firebase
+// dar like nos paises que gostaria e store no mongodb servidor dentro do perfil da pessoa, usar integração mongo e firebase
 // abrir uma lista de prós e contras, segundo seu login
 
 export default function GetApi(){
