@@ -63,15 +63,6 @@ function Forms(){
         <div>
             
         <div class="container">
-            
-            <div class="alert alert-success alert-dismissible fade show" role="alert"> 
-                <h1>Alert not closing</h1>
-                <a href="/" class="alert-link">Go to the home page</a>
-                <button type ="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"  //data-bs-dismiss diz o que fechar quando o botão for desligado
-                    />
-            </div>
-
-            
             <div class="row pb-3">
                 <div class="col">
                     <div class="card" style={{"width":"400px"}}>

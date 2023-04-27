@@ -44,6 +44,37 @@ app.get('/users', (req,res)=> {
         })
 })
 
+// send from firebase to Mongodb
+
+const emailSchema = new mongoose.Schema({
+    email: String
+})
+
+const emails = mongoose.model('emails',emailSchema)
+
+app.post('/emails',(req,res)=>{
+    const email = new emails ({
+        email: req.body.email
+    })
+    email.save()
+        .then(()=>{
+            console.log(` New email Saved`)
+            res.send("Complete")
+    })
+        .catch((err) => {
+         console.error(err);
+            res.status(500).send('Error saving user to database');
+      })
+})
+
+app.get('/emails', (req,res)=> {
+    emails.find({})
+        .then(emails=>{
+            res.send(emails)
+        })
+})
+
+
 
 
 app.listen(port,()=>{

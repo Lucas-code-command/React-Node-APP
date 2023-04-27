@@ -3,6 +3,7 @@ import {Card, Form, Button, Alert} from 'react-bootstrap'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { auth } from './Auth_firebase/firebase'
 import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 
 
@@ -28,7 +29,7 @@ export default function SignUp(){
         
         try{
             await createUserWithEmailAndPassword(auth, email, password)
-            navigate('/auth/10')
+            navigate(`/auth/${email}`)
         } catch(err){
             console.error(err)
         }
@@ -41,7 +42,7 @@ export default function SignUp(){
         <>
             <Card>
                 <Card.Body>
-                    <h2>Sign In</h2>
+                    <h2>Sign Up</h2>
                     {error && <Alert variant='danger'>{error}</Alert>}
                     <Form onSubmit={handleSubmit}>
                         <Form.Group className='pb-2' id='email'>
@@ -67,7 +68,9 @@ export default function SignUp(){
             </Card>
             <div className='d-flex justify-content-center'>
                 <div><span> Already have an account? </span></div>
-                <div><a>Sign In</a></div>
+                <div>
+                    <Link to='/auth/logIn'>Log In</Link>
+                </div>
             </div>
         </>
     )

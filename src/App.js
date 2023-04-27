@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
-import Forms from './App2/Teste';
+import Forms from './App2/send_data';
 import GetApi from './App2/GetApi';
 import Retrive from './App2/retrive_mongo';
 import Parameters from './Params_history/Parameters';
@@ -9,7 +9,8 @@ import {createBrowserRouter,createRoutesFromElements,Link,Outlet,Route, RouterPr
 import GetApiEach from './App2/GetApiEach';
 import SignUp from './Firebase/SignUp';
 import React from 'react';
-import User_page from './Firebase/Auth_firebase/User_page';
+import User_page from './Firebase/User_page';
+import LogIn from './Firebase/LogIn';
 
 
 
@@ -38,6 +39,7 @@ function App() {
 
           <Route path="/auth">
               <Route index element={<SignUp />} />
+              <Route path="/auth/logIn" element={<LogIn />}/>
               <Route path=":UserId" element={<User_page />} />
           </Route>
         </Route>
