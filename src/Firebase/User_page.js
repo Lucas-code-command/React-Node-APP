@@ -43,6 +43,7 @@ export default function User_page(){
                     <Form.Label>Email</Form.Label>
                     <Form.Label>{auth?.currentUser?.email}</Form.Label>
                 </Form.Group>
+                <Button type="button"> like </Button>
                 <Button type="submit">send to MongoDB</Button>
             </Form>
         </div>
