@@ -76,15 +76,16 @@ app.get('/emails', (req,res)=> {
         })
 })
 
-app.delete('/emails', (req,res)=>{
-    emails.deleteMany({})
+app.delete('/emails/:email', (req,res)=>{
+    const email = req.params.email
+    emails.deleteOne({email})
         .then(() => {
-            console.log('All emails deleted');
-            res.send('All emails deleted');
+            console.log(`${email} deleted`);
+            res.send(`${email} deleted`);
         })
         .catch((err) => {
             console.error(err);
-            res.status(500).send('Error deleting emails from database');
+            res.status(500).send(`Error deleting ${email} from database`);
         });
 })
 

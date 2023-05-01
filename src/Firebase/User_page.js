@@ -71,7 +71,8 @@ export default function User_page(){
     }
 
     function delete_all(){
-        axios.delete('http://localhost:5050/emails')
+        const email = auth?.currentUser?.email
+        axios.delete(`http://localhost:5050/emails/${email}`)
             .then(response => {
                 setDeleteResult(response.data)
             })
@@ -122,7 +123,7 @@ export default function User_page(){
             onClick={delete_all} 
             className="btn btn-danger"
             type="submit">
-                Delete all
+                Delete
             </Button>
            </div>
             <div>
