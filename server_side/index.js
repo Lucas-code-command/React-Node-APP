@@ -47,14 +47,16 @@ app.get('/users', (req,res)=> {
 // send from firebase to Mongodb
 
 const emailSchema = new mongoose.Schema({
-    email: String
+    email: String,
+    classification: String
 })
 
 const emails = mongoose.model('emails',emailSchema)
 
 app.post('/emails',(req,res)=>{
     const email = new emails ({
-        email: req.body.email
+        email: req.body.email,
+        classification: req.body.classification
     })
     email.save()
         .then(()=>{
@@ -72,6 +74,33 @@ app.get('/emails', (req,res)=> {
         .then(emails=>{
             res.send(emails)
         })
+})
+
+app.delete('/emails', (req,res)=>{
+    emails.deleteMany({})
+        .then(() => {
+            console.log('All emails deleted');
+            res.send('All emails deleted');
+        })
+        .catch((err) => {
+            console.error(err);
+            res.status(500).send('Error deleting emails from database');
+        });
+})
+
+app.put('/emails/:email', (req, res)=>{
+    const email = req.params.email;
+    const {classification} = req.body;
+
+    emails.findOneAndUpdate({email},{classification})
+        .then(() => {
+            console.log(`Email with email ${email} updated with classification ${classification}`);
+            res.send('Email updated successfully');
+        })
+        .catch((err) => {
+            console.error(err);
+            res.status(500).send('Error updating email');
+        });
 })
 
 
