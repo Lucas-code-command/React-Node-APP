@@ -131,8 +131,12 @@ export default function User_page(){
                 className="btn btn-danger" type='submit'>
                     Log Off
             </Button>
-
             </div>
+
+            {auth?.currentUser?.email === 'teste@teste.co'?(
+                <Button>heyy</Button>
+
+            ):null}
             
 
             
