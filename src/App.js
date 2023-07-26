@@ -11,6 +11,7 @@ import SignUp from './Firebase/SignUp';
 import React from 'react';
 import User_page from './Firebase/User_page';
 import LogIn from './Firebase/LogIn';
+import Main from './social_media/main';
 
 
 
@@ -42,6 +43,11 @@ function App() {
               <Route path="/auth/logIn" element={<LogIn />}/>
               <Route path=":UserId" element={<User_page />} />
           </Route>
+
+          <Route path='/social_media'>
+            <Route index element={<Main/>}/>
+            
+          </Route>
         </Route>
       </React.Fragment>
     )
@@ -64,6 +70,7 @@ const Root = () => {
       <div className='col'><Link to='/retrive'> Retrive </Link></div>
       <div className='col'><Link to='/parameters'> Parameters </Link></div>
       <div className='col'><Link to='/auth'>Auth Firebase</Link></div>
+      <div className='col'><Link to='/social_media'>Social</Link></div>
     </div>
     <div>
       <Outlet />
