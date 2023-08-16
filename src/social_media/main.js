@@ -1,48 +1,102 @@
 import {useState} from 'react'
-import Overlay_ from './Overlay'
 
 export default function Main(){
+    const Sentimentos = ["Muito Bem", "Bem" , "Neutro","Mal","Muito Mal"]
+    const [selectedSentimentos, setSelectedSentimentos] = useState()
 
-    const [showOverlay, setShowOverlay]=useState(false)
-    const handOverlayOpen = () =>{
-        setShowOverlay(true)
-
+    const handleSentimentoChange = (e) =>{
+        setSelectedSentimentos(e.target.value)
     }
 
-    const handOverlayClose = () =>{
-        setShowOverlay(false)
+    const [relacionado, setRelacionado] = useState()
+    const handleRelacionado = (e) => {
+        setRelacionado(e.target.value)
     }
 
+    const localidades = ["Planta", 'Home Office', 'Escritórios']
+    const [local, setLocal] = useState()
+    const handleLocal = (e) =>{
+        setLocal(e.target.value)
+    }
+
+
+    const handleSubmit = (e) =>{
+        console.log(selectedSentimentos, relacionado, local)
+    }
 
 
     return(
         <div className="container">
-            <div class='row row-cols-2'> 
+            <div class='row'>
                 <div class='col'>
-                    <div class='col'>
-                    <img></img>
-                    <p>imagem do usuário</p>
-                    <h2>Nome do usuário</h2>
-                    <p>@do usuário</p>
-                    </div>
-                    <div class='col' style={{backgroundColor:"green"}}>
-                        <h1>Como estou me sentindo?</h1>
-                        <p>foto de perfil</p>
-                        <h2>Nome</h2>
-                        <h3>user</h3>
-                        <p>Frase</p>
-                    </div>
-                    
+                    <img src='./img/BraskEmotion-removebg-preview.png' alt='braskEmotion' width="200" height="200"/>
                 </div>
-                
-                <div class='row row-cols-1 row-cols-md-2'>
-                        <div clss='col'>Hey</div>
-                        <button onClick={handOverlayOpen}>Open</button>
-                        {showOverlay  && <Overlay_ onClose={handOverlayClose}/>}
-                        <div clss='col'>There</div>
-                        
+                <div class='col'>
+                    <h1>Olá, eu sou o Braskemotion</h1>
                 </div>
             </div>
+
+
+            <div class='container'>
+                <h3>Como você está se sentindo hoje?</h3>
+                <ul>
+                    {Sentimentos.map((Sentimento, index)=>(
+                        <li key={index}>
+                            <input
+                                type="checkbox"
+                                name='sentimentos'
+                                value={Sentimento}
+                                checked={selectedSentimentos === Sentimento}
+                                onChange={handleSentimentoChange}
+                            />
+                            {Sentimento}
+                        </li>
+                    ))}
+                </ul>
+            </div>
+
+            <div class='container'>
+                <h3>O quanto isso tem relação com *sua empresa*</h3>
+                <select className='form-select' onChange={handleRelacionado}>
+                    <option value="no">Selecione uma opção abaixo</option>
+                    <option value='Nada relacionado'>Nada relacionado</option>
+                    <option value='Pouco relacionado'>Pouco relacionado</option>
+                    <option value='Neutro'>Neutro</option>
+                    <option value='Relacionado'>Relacionado</option>
+                    <option value='Muito relacionado'>Muito relacionado</option>
+
+                </select>
+
+            </div>
+
+            <div class='container'>
+                <ul>
+                    {localidades.map((localidade, index)=>(
+                        <li key={index}>
+                            <input 
+                            type='radio'
+                            name='localidade'
+                            value={localidade}
+                            checked={local === localidade}
+                            onChange={handleLocal}
+                            />
+                            {localidade}
+                        </li>
+                    ))}
+
+                </ul>
+
+
+            </div>
+
+
+            <div class='container'>
+                <button onClick={handleSubmit}>Click here</button>
+            </div>
+            
+            
+            
+            
             
             
         </div>
