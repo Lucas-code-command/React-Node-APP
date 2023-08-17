@@ -29,7 +29,7 @@ export default function Main(){
         <div className="container">
             <div class='row'>
                 <div class='col'>
-                    <img src='./img/BraskEmotion-removebg-preview.png' alt='braskEmotion' width="200" height="200"/>
+                    <img src="./BraskEmotion-removebg-preview.png" alt="Brask Emotion" />
                 </div>
                 <div class='col'>
                     <h1>Olá, eu sou o Braskemotion</h1>
