@@ -1,4 +1,7 @@
+import { all } from 'axios'
 import {useState} from 'react'
+import { Col, Row,Image,Button,Alert } from 'react-bootstrap'
+
 
 export default function Main(){
     const Sentimentos = ["Muito Bem", "Bem" , "Neutro","Mal","Muito Mal"]
@@ -19,29 +22,43 @@ export default function Main(){
         setLocal(e.target.value)
     }
 
-
+    const [selecionado,setSelecionado]=useState(false)
     const handleSubmit = (e) =>{
-        console.log(selectedSentimentos, relacionado, local)
+        const allItems = [selectedSentimentos, relacionado, local];
+        if (selectedSentimentos!== undefined &&
+            local !== undefined &&
+            relacionado === 'Selecione uma opção abaixo') {setSelecionado(true)}
+
+
+        if (allItems.some(item => item === undefined) || relacionado=='Selecione uma opção abaixo') {
+            e.preventDefault();
+            setSelecionado(true)
+          } else {
+            console.log(allItems, relacionado);
+          }
     }
+
+    const imageSrc = 'https://picsum.photos/200/300'
 
 
     return(
         <div className="container">
-            <div class='row'>
-                <div class='col'>
-                    <img src="./BraskEmotion-removebg-preview.png" alt="Brask Emotion" />
-                </div>
-                <div class='col'>
-                    <h1>Olá, eu sou o Braskemotion</h1>
-                </div>
-            </div>
+            <Row>
+                <Col sm={6}>
+                    <Image src={imageSrc} alt="Image" />
+                </Col>
+                <Col sm={6}>
+                    <h1>Braskemotion</h1>
+                    <p>Seja bem vindo *nome da pessoa*</p>
+                </Col>
+            </Row>
 
 
             <div class='container'>
                 <h3>Como você está se sentindo hoje?</h3>
                 <ul>
                     {Sentimentos.map((Sentimento, index)=>(
-                        <li key={index}>
+                        <div key={index} class="d-flex align-items-center">
                             <input
                                 type="checkbox"
                                 name='sentimentos'
@@ -49,30 +66,35 @@ export default function Main(){
                                 checked={selectedSentimentos === Sentimento}
                                 onChange={handleSentimentoChange}
                             />
-                            {Sentimento}
-                        </li>
+                            <div style={{marginLeft:'10px'}}>{Sentimento}</div>
+                        </div>
                     ))}
                 </ul>
             </div>
 
             <div class='container'>
                 <h3>O quanto isso tem relação com *sua empresa*</h3>
-                <select className='form-select' onChange={handleRelacionado}>
-                    <option value="no">Selecione uma opção abaixo</option>
-                    <option value='Nada relacionado'>Nada relacionado</option>
-                    <option value='Pouco relacionado'>Pouco relacionado</option>
-                    <option value='Neutro'>Neutro</option>
-                    <option value='Relacionado'>Relacionado</option>
-                    <option value='Muito relacionado'>Muito relacionado</option>
+                <div style={{marginLeft:'10px', marginBottom:'10px'}}>
+                    <select className='form-select' onChange={handleRelacionado}>
+                        <option value="Selecione uma opção abaixo">Selecione uma opção abaixo</option>
+                        <option value='Nada relacionado'>Nada relacionado</option>
+                        <option value='Pouco relacionado'>Pouco relacionado</option>
+                        <option value='Neutro'>Neutro</option>
+                        <option value='Relacionado'>Relacionado</option>
+                        <option value='Muito relacionado'>Muito relacionado</option>
 
-                </select>
+                    </select>
+
+                </div>
+                
 
             </div>
 
             <div class='container'>
+                <h3>Qual seu local de trabalho hoje?</h3>
                 <ul>
                     {localidades.map((localidade, index)=>(
-                        <li key={index}>
+                        <div key={index} class="d-flex align-items-center">
                             <input 
                             type='radio'
                             name='localidade'
@@ -80,8 +102,8 @@ export default function Main(){
                             checked={local === localidade}
                             onChange={handleLocal}
                             />
-                            {localidade}
-                        </li>
+                            <div style={{marginLeft:'10px'}}>{localidade}</div>
+                        </div>
                     ))}
 
                 </ul>
@@ -89,10 +111,14 @@ export default function Main(){
 
             </div>
 
+            {selecionado && <Alert variant="warning">⚠️ Preencha todos os campos </Alert>}
 
-            <div class='container'>
-                <button onClick={handleSubmit}>Click here</button>
+
+            <div class='container' style={{marginLeft:'20px'}}>
+                <Button onClick={handleSubmit}>Click here</Button>
             </div>
+
+            
             
             
             
