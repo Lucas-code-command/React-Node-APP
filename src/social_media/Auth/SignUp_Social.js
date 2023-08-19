@@ -1,15 +1,20 @@
 import { useState } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
+import axios from "axios";
 
 
 export default function SignUp_Social(){
-    const [email, setEmail] = useState()
-    const [password,setPassword]=useState()
-    const [company, setCompany] =useState()
+    const [name, setName] = useState('')
+    const [password,setPassword]=useState('')
+    const [company, setCompany] =useState('')
 
 
     const handleSubmit = (e) =>{
-        console.log()
+        axios.post('http://localhost:2100/users', {name, password, company})
+            .then(res=>{console.log(res.data)})
+            .catch(error=>{console.log(error)})
+        e.preventDefault()
+        
 
     }
     
@@ -27,7 +32,7 @@ export default function SignUp_Social(){
                         <Form.Group>
                             <Form.Label>Email</Form.Label>
                             <Form.Control type="email" placeholder="Insira seu email" 
-                            value={email} onChange={(e)=> setEmail(e.target.value)}/>
+                            value={name} onChange={(e)=> setName(e.target.value)}/>
                         </Form.Group>
                     </Col>
                 </Row>
@@ -46,7 +51,7 @@ export default function SignUp_Social(){
                         <Form.Group style={{ marginBottom: "10px"  }}>
                             <Form.Label>Company</Form.Label>
                             <Form.Control placeholder="Digite sua Companhia"
-                            value={company} onChange={(e)=> setCompany(company)}
+                            value={company} onChange={(e)=> setCompany(e.target.value)}
                             />
                         </Form.Group>
                     </Col>
