@@ -12,6 +12,7 @@ import React from 'react';
 import User_page from './Firebase/User_page';
 import LogIn from './Firebase/LogIn';
 import Main from './social_media/main';
+import SignUp_Social from './social_media/Auth/SignUp_Social';
 
 
 
@@ -46,6 +47,7 @@ function App() {
 
           <Route path='/social_media'>
             <Route index element={<Main/>}/>
+            <Route path='/social_media/SignUp' element={<SignUp_Social />}/>
             
           </Route>
         </Route>
