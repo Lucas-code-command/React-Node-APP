@@ -21,8 +21,9 @@ export default function SignUp_Social(){
     return(
         <div>
             <Row display="flex" justify-content="center">
-                <Col flexGrow="1">
+                <Col>
                     <h1 style={{ textAlign: 'center' }}>Bem vindo ao Braskemotion</h1>
+                    <h3>Sign Up</h3>
                 </Col>
             </Row>
             
@@ -57,7 +58,7 @@ export default function SignUp_Social(){
                     </Col>
                 </Row>
 
-                <Button type="Submit">Enviar</Button>
+                <Button type="Submit">Sign Up</Button>
 
 
             </Form>

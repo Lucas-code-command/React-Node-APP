@@ -1,9 +1,14 @@
 import { all } from 'axios'
 import {useState} from 'react'
 import { Col, Row,Image,Button,Alert } from 'react-bootstrap'
+import { useLocation } from 'react-router-dom';
 
 
 export default function Main(){
+    const location = useLocation();
+    const user = location.state?.user;
+
+
     const Sentimentos = ["Muito Bem", "Bem" , "Neutro","Mal","Muito Mal"]
     const [selectedSentimentos, setSelectedSentimentos] = useState()
 
