@@ -47,7 +47,7 @@ function App() {
           </Route>
 
           <Route path='/social_media'>
-            <Route index element={<Main/>}/>
+            <Route index element={<Main />}/>
             <Route path='/social_media/SignUp' element={<SignUp_Social />}/>
             <Route path='/social_media/Login' element={<LogIn_Social />} />
             

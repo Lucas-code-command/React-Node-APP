@@ -2,11 +2,13 @@ import { all } from 'axios'
 import {useState} from 'react'
 import { Col, Row,Image,Button,Alert } from 'react-bootstrap'
 import { useLocation } from 'react-router-dom';
+import axios from 'axios';
 
 
 export default function Main(){
     const location = useLocation();
     const user = location.state?.user;
+    const [email, setEmail] = useState(user); 
 
 
     const Sentimentos = ["Muito Bem", "Bem" , "Neutro","Mal","Muito Mal"]
@@ -35,12 +37,31 @@ export default function Main(){
             relacionado === 'Selecione uma opção abaixo') {setSelecionado(true)}
 
 
-        if (allItems.some(item => item === undefined) || relacionado=='Selecione uma opção abaixo') {
+
+          if (
+            allItems.some((item) => item === undefined) ||
+            relacionado === 'Selecione uma opção abaixo'
+          ) {
             e.preventDefault();
-            setSelecionado(true)
+            setSelecionado(true);
           } else {
+            axios
+              .post('http://localhost:2100/store-responses', {
+                email,
+                selectedSentimentos,
+                relacionado,
+                local,
+              })
+              .then((response) => {
+                console.log('Responses stored in the database:', response.data);
+              })
+              .catch((error) => {
+                console.error('Error storing responses:', error);
+              });
             console.log(allItems, relacionado);
           }
+
+          
     }
 
     const imageSrc = 'https://picsum.photos/200/300'
