@@ -9,7 +9,7 @@ app.use(cors());
 app.use(express.json());
 
 const userSchema = new mongoose.Schema({
-    email: String, // Change the field name to 'email'
+    email: String, 
     password: String,
     company: String
 });
@@ -26,7 +26,7 @@ mongoose.connect('mongodb://localhost:27017/social_db', {
 // SignUP
 app.post('/users', async (req, res) => {
     try {
-        const existingUser = await users.findOne({ email: req.body.email }); // Change 'name' to 'email'
+        const existingUser = await users.findOne({ email: req.body.email }); 
 
         if (existingUser) {
             res.status(400).send('Usuário já cadastrado');
@@ -63,7 +63,7 @@ app.post('/users/login', async (req, res) => {
 });
 
 
-//Get Responses 
+//POST Responses 
 
 const responseSchema = new mongoose.Schema({
     email: String,
@@ -83,7 +83,6 @@ mongoose.connect('mongodb://localhost:27017/social_db',{
 
 app.post('/store-responses', async (req, res) => {
     try {
-      // Extract data from the request
       const { email, selectedSentimentos, relacionado, local } = req.body;
 
       const response = new responses({
@@ -91,8 +90,6 @@ app.post('/store-responses', async (req, res) => {
         selectedSentimentos: req.body.selectedSentimentos,
         relacionado:req.body.relacionado,
         local:req.body.local
-
-
     });
     await responses.create(response)
     res.status(201).send('Response created')
