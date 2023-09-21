@@ -17,7 +17,7 @@ export default function LogIn_Social() {
       .post("http://localhost:2100/users/login", { email, password }) 
       .then((response) => {
         if (response.data === "Success") {
-          navigate("/social_media", { state: { user: email } }); 
+          navigate("/social_media/user", { state: { user: email } }); 
         } else {
           console.log("Invalid Login");
         }
@@ -31,7 +31,7 @@ export default function LogIn_Social() {
         <div>
             <Row display='flex' justify-content='center'>
                 <Col>
-                    <h1 style={{ textAlign: 'Center' }}> Bem vindo ao Braskemotion</h1>
+                    <h1 style={{ textAlign: 'Center' }}> Bem vindo ao Company In Motion</h1>
                     <h3>Log In</h3>
                 </Col>
             </Row>
@@ -55,8 +55,13 @@ export default function LogIn_Social() {
                         </Form.Group>
                     </Col>
                 </Row>
+                <Row>
+                    <Col>
+                        <Button className="btn btn-primary" type='Submit'>Sign In</Button>    
+                    </Col>
+                </Row>
 
-                <Button type='Submit'>Sign In</Button>
+                
             </Form>
         </div>
     )

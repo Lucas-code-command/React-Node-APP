@@ -9,6 +9,7 @@ app.use(cors());
 app.use(express.json());
 
 const userSchema = new mongoose.Schema({
+    name: String,
     email: String, 
     password: String,
     company: String
@@ -29,11 +30,12 @@ app.post('/users', async (req, res) => {
         const existingUser = await users.findOne({ email: req.body.email }); 
 
         if (existingUser) {
-            res.status(400).send('Usuário já cadastrado');
+            res.status(400).send('UserEmail alreay in use');
             return;
         }
         const hashedPassword = await bcrypt.hash(req.body.password, 10);
         const user = new users({
+            name: req.body.name,
             email: req.body.email,
             password: hashedPassword,
             company: req.body.company 

@@ -1,15 +1,24 @@
 import { useState } from "react";
-import { Button, Col, Form, Row } from "react-bootstrap";
+import { Alert, Button, Col, Form, Row } from "react-bootstrap";
 import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function SignUp_Social() {
     const [email, setEmail] = useState(''); 
     const [password, setPassword] = useState('');
     const [company, setCompany] = useState('');
+    const [name, setName] =useState('');
+    const navigate = useNavigate();
+    const [userRegistered, setUserRegistered] = useState(false)
 
     const handleSubmit = (e) => {
-        axios.post('http://localhost:2100/users', { email, password, company }) 
-            .then(res => { console.log(res.data) })
+        axios.post('http://localhost:2100/users', { email, password, company, name }) 
+            .then((response)=>{
+                console.log("Server Response:", response.data);
+                if(response.data === 'New user created'){
+                    navigate('/social_media/user',{state:{user:email}})
+                }
+            })
             .catch(error => { console.log(error) })
         e.preventDefault();
     }
@@ -24,6 +33,19 @@ export default function SignUp_Social() {
             </Row>
 
             <Form onSubmit={handleSubmit}>
+                <Row>
+                    <Col>
+                        <Form.Group>
+                            <Form.Label>Nome</Form.Label>
+                            <Form.Control 
+                                type="name"
+                                placeholder="Insira seu nome"
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                            />
+                        </Form.Group>
+                    </Col>
+                </Row>
                 <Row>
                     <Col>
                         <Form.Group>
@@ -57,9 +79,16 @@ export default function SignUp_Social() {
                         </Form.Group>
                     </Col>
                 </Row>
-
                 <Button type="Submit">Sign Up</Button>
             </Form>
+
+            <Row>
+                <Col>Já tem uma conta?</Col>
+                <Link to='/social_media/Login'>
+                    <Button>LogIn</Button>
+                </Link>
+            </Row>
+
         </div>
     )
 }

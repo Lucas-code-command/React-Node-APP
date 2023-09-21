@@ -3,6 +3,7 @@ import {useState} from 'react'
 import { Col, Row,Image,Button,Alert } from 'react-bootstrap'
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
+import Characters from './img/Characters.png';
 
 
 export default function Main(){
@@ -71,7 +72,7 @@ export default function Main(){
         <div className="container">
             <Row>
                 <Col sm={6}>
-                    <Image src={imageSrc} alt="Image" />
+                    <Image src={Characters} alt="Image" />
                 </Col>
                 <Col sm={6}>
                     <h1>Braskemotion</h1>
