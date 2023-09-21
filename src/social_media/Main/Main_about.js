@@ -1,6 +1,7 @@
 import { Button, Col, Row } from "react-bootstrap";
 import CompanyLogo from './img/CompanyLogo.png';
 import { Link } from "react-router-dom";
+import './Main_about.css'
 
 
 
@@ -25,7 +26,7 @@ export default function Main_about(){
 
                         <Col>
                             <Link to='/social_media/SignUp'>
-                                <Button className="btn btn-secondary"> SignUp </Button>
+                                <Button className="btn btn-primary"> SignUp </Button>
                             </Link>                        
                         </Col>
                     </Row>

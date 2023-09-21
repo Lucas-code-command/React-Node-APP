@@ -27,7 +27,7 @@ export default function SignUp_Social() {
         <div>
             <Row display="flex" justify-content="center">
                 <Col>
-                    <h1 style={{ textAlign: 'center' }}>Bem vindo ao Braskemotion</h1>
+                    <h1 style={{ textAlign: 'center' }}>Bem vindo ao Company In Motion</h1>
                     <h3>Sign Up</h3>
                 </Col>
             </Row>

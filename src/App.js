@@ -13,8 +13,8 @@ import User_page from './Firebase/User_page';
 import LogIn from './Firebase/LogIn';
 import SignUp_Social from './social_media/Auth/SignUp_Social';
 import LogIn_Social from './social_media/Auth/LogIn_Social';
-import Main_about from './social_media/Main_about';
-import Main from './social_media/main';
+import Main_about from './social_media/Main/Main_about';
+import Main from './social_media/Main/main';
 
 
 

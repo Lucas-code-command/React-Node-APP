@@ -10,6 +10,10 @@ export default function Main(){
     const location = useLocation();
     const user = location.state?.user;
     const [email, setEmail] = useState(user); 
+    const Username = location.state?.userName;
+    const [name, setName] = useState(Username);
+    const Companyname = location.state?.companyName;
+    const [company, setCompany] = useState(Companyname)
 
 
     const Sentimentos = ["Muito Bem", "Bem" , "Neutro","Mal","Muito Mal"]
@@ -65,7 +69,7 @@ export default function Main(){
           
     }
 
-    const imageSrc = 'https://picsum.photos/200/300'
+
 
 
     return(
@@ -75,8 +79,8 @@ export default function Main(){
                     <Image src={Characters} alt="Image" />
                 </Col>
                 <Col sm={6}>
-                    <h1>Braskemotion</h1>
-                    <p>Seja bem vindo *nome da pessoa*</p>
+                    <h1>Company In Motion</h1>
+                    <p>Seja bem vindo {name}</p>
                 </Col>
             </Row>
 
@@ -100,7 +104,7 @@ export default function Main(){
             </div>
 
             <div class='container'>
-                <h3>O quanto isso tem relação com *sua empresa*</h3>
+                <h3>O quanto isso tem relação com a/o {company}</h3>
                 <div style={{marginLeft:'10px', marginBottom:'10px'}}>
                     <select className='form-select' onChange={handleRelacionado}>
                         <option value="Selecione uma opção abaixo">Selecione uma opção abaixo</option>

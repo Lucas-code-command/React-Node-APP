@@ -55,7 +55,11 @@ app.post('/users/login', async (req, res) => {
     }
     try {
         if (await bcrypt.compare(req.body.password, user.password)) { 
-            res.send('Success');
+            res.json({status: "Success", 
+            userName: user.name,
+            companyName: user.company
+        
+        })
         } else {
             res.send('Not Allowed');
         }

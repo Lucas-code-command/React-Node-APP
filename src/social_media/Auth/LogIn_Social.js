@@ -16,8 +16,14 @@ export default function LogIn_Social() {
         axios
       .post("http://localhost:2100/users/login", { email, password }) 
       .then((response) => {
-        if (response.data === "Success") {
-          navigate("/social_media/user", { state: { user: email } }); 
+        if (response.data.status === "Success") {
+            const userName = response.data.userName;
+            const companyName = response.data.companyName;
+          navigate("/social_media/user", { state: { 
+            user: email, 
+            userName,
+            companyName
+         } }); 
         } else {
           console.log("Invalid Login");
         }
@@ -46,7 +52,7 @@ export default function LogIn_Social() {
                         </Form.Group>
                     </Col>
                 </Row>
-                <Row>
+                <Row style={{marginBottom:'15px'}}>
                     <Col>
                         <Form.Group>
                             <Form.Label>Password</Form.Label>
@@ -55,11 +61,9 @@ export default function LogIn_Social() {
                         </Form.Group>
                     </Col>
                 </Row>
-                <Row>
-                    <Col>
-                        <Button className="btn btn-primary" type='Submit'>Sign In</Button>    
-                    </Col>
-                </Row>
+                
+                <Button className="btn btn-primary" type='Submit'>LogIn</Button>    
+
 
                 
             </Form>
