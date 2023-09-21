@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 
 export default function LogIn_Social() {
-    const [email, setEmail] = useState(''); // Change name to email
+    const [email, setEmail] = useState(''); 
     const [password, setPassword] = useState('');
 
     const navigate = useNavigate();
