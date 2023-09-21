@@ -41,7 +41,12 @@ app.post('/users', async (req, res) => {
             company: req.body.company 
         });
         await users.create(user);
-        res.status(201).send('New user created');
+        res.status(201).json({
+            status:'New user created',
+            userName: user.name,
+            companyName: user.company
+        
+        });
     } catch {
         res.status(500).send();
     }

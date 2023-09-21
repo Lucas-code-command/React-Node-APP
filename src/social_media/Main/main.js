@@ -1,9 +1,9 @@
-import { all } from 'axios'
 import {useState} from 'react'
 import { Col, Row,Image,Button,Alert } from 'react-bootstrap'
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import Characters from './img/Characters.png';
+import './main.css'
 
 
 export default function Main(){
@@ -59,6 +59,7 @@ export default function Main(){
               })
               .then((response) => {
                 console.log('Responses stored in the database:', response.data);
+
               })
               .catch((error) => {
                 console.error('Error storing responses:', error);
@@ -80,7 +81,7 @@ export default function Main(){
                 </Col>
                 <Col sm={6}>
                     <h1>Company In Motion</h1>
-                    <p>Seja bem vindo {name}</p>
+                    <p>Seja bem vindo {name}!</p>
                 </Col>
             </Row>
 
@@ -104,7 +105,7 @@ export default function Main(){
             </div>
 
             <div class='container'>
-                <h3>O quanto isso tem relação com a/o {company}</h3>
+                <h3>O quanto isso tem relação com {company}?</h3>
                 <div style={{marginLeft:'10px', marginBottom:'10px'}}>
                     <select className='form-select' onChange={handleRelacionado}>
                         <option value="Selecione uma opção abaixo">Selecione uma opção abaixo</option>
@@ -149,13 +150,7 @@ export default function Main(){
                 <Button onClick={handleSubmit}>Click here</Button>
             </div>
 
-            
-            
-            
-            
-            
-            
-            
+
         </div>
         )
 }

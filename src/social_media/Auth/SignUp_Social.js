@@ -6,22 +6,45 @@ import { Link, useNavigate } from "react-router-dom";
 export default function SignUp_Social() {
     const [email, setEmail] = useState(''); 
     const [password, setPassword] = useState('');
-    const [company, setCompany] = useState('');
+    const [company_val, setCompany_val] = useState('');
+    const[pron, setPron] =useState('');
+    const [warning, setWarning] =useState(false);
+    
+
+
     const [name, setName] =useState('');
     const navigate = useNavigate();
     const [userRegistered, setUserRegistered] = useState(false)
 
     const handleSubmit = (e) => {
+        e.preventDefault();
+
+        if (pron === "") {
+            setWarning(true);
+            
+        } else{
+            const company = pron + company_val;
+        
         axios.post('http://localhost:2100/users', { email, password, company, name }) 
             .then((response)=>{
                 console.log("Server Response:", response.data);
-                if(response.data === 'New user created'){
-                    navigate('/social_media/user',{state:{user:email}})
+                if(response.data.status === 'New user created'){
+                    const userName = response.data.userName;
+                    const companyName = response.data.companyName;
+                    navigate('/social_media/user',{state:{
+                        user:email,
+                        userName,
+                        companyName
+                    }})
                 }
             })
             .catch(error => { console.log(error) })
-        e.preventDefault();
-    }
+        }
+
+        }
+
+        
+    
 
     return (
         <div>
@@ -73,12 +96,28 @@ export default function SignUp_Social() {
                     <Col>
                         <Form.Group style={{ marginBottom: "10px" }}>
                             <Form.Label>Company</Form.Label>
-                            <Form.Control placeholder="Digite sua Companhia"
-                                value={company} onChange={(e) => setCompany(e.target.value)}
-                            />
+                            <Row>
+                                <Col md={4}>
+                                    <Form.Control as='select' value={pron} 
+                                            style={{marginBottom: '5px'}}
+                                            onChange={(e)=> setPron(e.target.value)}>
+                                    <option value=''>Selecione o pronome</option>
+                                    <option value="a ">a </option>
+                                    <option value="o ">o </option>
+                                    </Form.Control>
+                                </Col>
+                                <Col md={8}>
+                                    <Form.Control placeholder="Digite sua Companhia"
+                                        value={company_val} 
+                                        onChange={(e) => setCompany_val(e.target.value)}
+                                    />
+                                </Col>
+                            </Row>
                         </Form.Group>
                     </Col>
                 </Row>
+
+                {warning && (<div>Selecione um pronome para sua companhia!</div>)}
                 <Button type="Submit">Sign Up</Button>
             </Form>
 
