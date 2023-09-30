@@ -14,6 +14,7 @@ export default function Main(){
     const [name, setName] = useState(Username);
     const Companyname = location.state?.companyName;
     const [company, setCompany] = useState(Companyname)
+    const [overlay, setOverlay]= useState(false)
 
 
     const Sentimentos = ["Muito Bem", "Bem" , "Neutro","Mal","Muito Mal"]
@@ -59,6 +60,9 @@ export default function Main(){
               })
               .then((response) => {
                 console.log('Responses stored in the database:', response.data);
+                if (response.data === `Response created`){
+                    setOverlay(true)
+                }
 
               })
               .catch((error) => {
@@ -149,6 +153,15 @@ export default function Main(){
             <div class='container' style={{marginLeft:'20px'}}>
                 <Button onClick={handleSubmit}>Click here</Button>
             </div>
+
+            {overlay && <div id='overlay'>
+            <div className="overlay-content">
+                <h1>It worked</h1>
+                <button onClick={() => setOverlay(false)}> Close</button>
+
+            </div>
+                    
+                </div>}
 
 
         </div>
