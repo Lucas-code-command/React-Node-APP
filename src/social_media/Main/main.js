@@ -1,9 +1,9 @@
 import {useState} from 'react'
 import { Col, Row,Image,Button,Alert } from 'react-bootstrap'
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Characters from './img/Characters.png';
-import './main.css'
+
 
 
 export default function Main(){
@@ -13,8 +13,8 @@ export default function Main(){
     const Username = location.state?.userName;
     const [name, setName] = useState(Username);
     const Companyname = location.state?.companyName;
-    const [company, setCompany] = useState(Companyname)
-    const [overlay, setOverlay]= useState(false)
+    const [company, setCompany] = useState(Companyname);
+    const navigate = useNavigate();
 
 
     const Sentimentos = ["Muito Bem", "Bem" , "Neutro","Mal","Muito Mal"]
@@ -59,16 +59,15 @@ export default function Main(){
                 local,
               })
               .then((response) => {
-                console.log('Responses stored in the database:', response.data);
-                if (response.data === `Response created`){
-                    setOverlay(true)
+                if ( response.data === 'Response created'){
+                    navigate('/social_media/ok')
                 }
-
+                
               })
               .catch((error) => {
                 console.error('Error storing responses:', error);
               });
-            console.log(allItems, relacionado);
+            
           }
 
           
@@ -153,16 +152,6 @@ export default function Main(){
             <div class='container' style={{marginLeft:'20px'}}>
                 <Button onClick={handleSubmit}>Click here</Button>
             </div>
-
-            {overlay && <div id='overlay'>
-            <div className="overlay-content">
-                <h1>It worked</h1>
-                <button onClick={() => setOverlay(false)}> Close</button>
-
-            </div>
-                    
-                </div>}
-
 
         </div>
         )

@@ -15,6 +15,7 @@ import SignUp_Social from './social_media/Auth/SignUp_Social';
 import LogIn_Social from './social_media/Auth/LogIn_Social';
 import Main_about from './social_media/Main/Main_about';
 import Main from './social_media/Main/main';
+import Response_created from './social_media/Main/responses/Response_created';
 
 
 
@@ -52,6 +53,7 @@ function App() {
             <Route path='/social_media/SignUp' element={<SignUp_Social />}/>
             <Route path='/social_media/Login' element={<LogIn_Social />} />
             <Route path='/social_media/user' element={<Main />} />
+            <Route path='/social_media/ok' element={<Response_created />}/>
 
             
           </Route>
