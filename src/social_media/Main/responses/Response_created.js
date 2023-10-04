@@ -1,5 +1,5 @@
 import { Button, Col, Row, Image } from "react-bootstrap";
-import Characters from './Main/img/Characters.png'
+import Characters from '/Users/lukemoliterno/Documents/GitHub/React-Node-APP/src/social_media/Main/img/CompanyLogo.png'
 
 export default function Response_created(){
     return(
